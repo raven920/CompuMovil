@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_lugares"
+            android:icon="@drawable/ic_public"
+            android:title="@string/lugares" />
+        <item
+            android:id="@+id/nav_perfil"
+            android:icon="@drawable/ic_account_circle"
+            android:title="@string/perfil" />
+        <item
+            android:id="@+id/nav_acercade"
+            android:icon="@drawable/ic_info"
+            android:title="@string/acercade" />
+    </group>
+
+    <item android:title="@string/cuentalb">
+        <menu>
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/ic_power_settings_new"
+                android:title="@string/cerrar_sesion" />
+
+        </menu>
+    </item>
+
+</menu>

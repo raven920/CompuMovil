@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Nuevo Contacto</string>
+    <string name="nameReq">Nombre*</string>
+    <string name="name">Nombre</string>
+    <string name="lastname">Apellidos</string>
+    <string name="male">Hombre</string>
+    <string name="female">Mujer</string>
+    <string name="gender">Sexo</string>
+    <string name="birthDate">Fecha de nacimiento</string>
+    <string name="countryNameReq">País*</string>
+    <string name="countryName">País</string>
+    <string name="phoneNumberReq">Teléfono*</string>
+    <string name="phoneNumber">Teléfono</string>
+    <string name="address">Dirección</string>
+    <string name="emailReq">Email*</string>
+    <string name="email">Email</string>
+    <string name="placeholder">Placeholder</string>
+    <string name="favorite">Favorito</string>
+    <string name="hobby">Pasatiempo</string>
+    <string name="showButton">Mostrar</string>
+    <string name="yes">Si</string>
+    <string name="no">No</string>
+    <string name="required">Este campo es requerido.</string>
+    <string name="missing">Algunos campos requeridos están vacíos, por favor llenelos e intente nuevamente.</string>
+
+    <string-array name="countries_array">
+        <item>Argentina</item>
+        <item>Bolivia</item>
+        <item>Brasil</item>
+        <item>Chile</item>
+        <item>Colombia</item>
+        <item>Costa Rica</item>
+        <item>Cuba</item>
+        <item>Ecuador</item>
+        <item>El Salvador</item>
+        <item>Guayana Francesa</item>
+        <item>Granada</item>
+        <item>Guatemala</item>
+        <item>Guayana</item>
+        <item>Haití</item>
+        <item>Honduras</item>
+        <item>Jamaica</item>
+        <item>México</item>
+        <item>Nicaragua</item>
+        <item>Paraguay</item>
+        <item>Panamá</item>
+        <item>Perú</item>
+        <item>Puerto Rico</item>
+        <item>República Dominicana</item>
+        <item>Surinam</item>
+        <item>Uruguay</item>
+        <item>Venezuela</item>
+    </string-array>
+
+    <string-array name="hobbies_array">
+        <item>Seleccione uno...</item>
+        <item>Bailar</item>
+        <item>Videojuegos</item>
+        <item>Cine</item>
+        <item>Estudiar</item>
+        <item>Viajar</item>
+        <item>Deportes</item>
+        <item>Lectura</item>
+    </string-array>
+
+</resources>

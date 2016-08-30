@@ -1,0 +1,66 @@
+<resources>
+    <string name="app_name">New Contact</string>
+    <string name="nameReq">First Name*</string>
+    <string name="name">First Name</string>
+    <string name="lastname">Last Name</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="gender">Gender</string>
+    <string name="birthDate">Birthdate</string>
+    <string name="countryNameReq">Country*</string>
+    <string name="countryName">Country</string>
+    <string name="phoneNumberReq">Phone Number*</string>
+    <string name="phoneNumber">Phone Number</string>
+    <string name="address">Address</string>
+    <string name="emailReq">Email*</string>
+    <string name="email">Email</string>
+    <string name="placeholder">Placeholder</string>
+    <string name="favorite">Favorite</string>
+    <string name="hobby">Hobby</string>
+    <string name="showButton">Show</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="required">This field is required.</string>
+    <string name="missing">Some required fields are missing, please fill them out and try again.</string>
+
+    <string-array name="countries_array">
+        <item>Argentina</item>
+        <item>Bolivia</item>
+        <item>Brazil</item>
+        <item>Chile</item>
+        <item>Colombia</item>
+        <item>Costa Rica</item>
+        <item>Cuba</item>
+        <item>Ecuador</item>
+        <item>El Salvador</item>
+        <item>French Guiana</item>
+        <item>Granada</item>
+        <item>Guatemala</item>
+        <item>Guiana</item>
+        <item>Haiti</item>
+        <item>Honduras</item>
+        <item>Jamaica</item>
+        <item>Mexico</item>
+        <item>Nicaragua</item>
+        <item>Paraguay</item>
+        <item>Panama</item>
+        <item>Peru</item>
+        <item>Puerto Rico</item>
+        <item>Dominican Republic</item>
+        <item>Surinam</item>
+        <item>Uruguay</item>
+        <item>Venezuela</item>
+    </string-array>
+
+    <string-array name="hobbies_array">
+        <item>Select one...</item>
+        <item>Dance</item>
+        <item>Videogames</item>
+        <item>Movies</item>
+        <item>Study</item>
+        <item>Travel</item>
+        <item>Sports</item>
+        <item>Reading</item>
+    </string-array>
+
+</resources>
