@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_misiones"
+            android:icon="@drawable/ic_explore"
+            android:title="@string/misiones" />
+        <item
+            android:id="@+id/nav_avances"
+            android:icon="@drawable/ic_account_circle"
+            android:title="@string/avances" />
+        <item
+            android:id="@+id/nav_ranking"
+            android:icon="@drawable/ic_trending_up"
+            android:title="@string/ranking" />
+    </group>
+
+    <item android:title="@string/cuentalb">
+        <menu>
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/ic_power_settings_new"
+                android:title="@string/cerrar_sesion" />
+
+        </menu>
+    </item>
+
+</menu>
