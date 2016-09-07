@@ -20,7 +20,17 @@
     <string name="cuentalb">Cuenta</string>
     <string name="cerrar_sesion">Cerrar Sesión</string>
     <string name="titulo_lugares_general">General</string>
-    <string name="titulo_lugares_fotos">Fotos</string>
+    <string name="titulo_lugares_fotos">Foto</string>
     <string name="titulo_lugares_mapa">Mapa</string>
     <string name="title_activity_maps_activity_example">Map</string>
+    <string name="edad">Edad</string>
+    <string name="nombreLugar">Nombre del Lugar</string>
+    <string name="descCorta">Descripción corta</string>
+    <string name="infoGeneral">Información General</string>
+    <string name="temperatura">Temperatura</string>
+    <string name="lugaresRecoCreTV">Lugares Recomendados</string>
+    <string name="puntuacion">Puntuación (0~10)</string>
+    <string name="longitud">Longitud</string>
+    <string name="latitud">Latitud</string>
+    <string name="guardar">Guardar</string>
 </resources>

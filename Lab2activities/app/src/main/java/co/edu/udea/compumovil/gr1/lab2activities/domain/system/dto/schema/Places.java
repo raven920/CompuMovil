@@ -18,7 +18,7 @@ public class Places {
         public static final String LATITUD = "latitud";
         public static final String LONGITUD = "longitud";
         public static final String ZOOM = "zoom";
-        public static final String INFO_GENERAL = "informacion_general";
+        public static final String INFO_GENERAL = "info_gen";
         public static final String TEMPERATURA = "temperatura";
         public static final String SITIOS_RECOMENDADOS = "sitios_recomendados";
     }

@@ -17,12 +17,19 @@
         android:fillViewport="true"
         android:layout_gravity="center_vertical"
         >
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-
             >
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:src="@drawable/user_ph"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/fotoPerfilReg"
+                android:scaleType="centerCrop"/>
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -51,6 +58,16 @@
                     android:id="@+id/emailRegisterTxt"
                     android:hint="@string/email"
                     android:inputType="textEmailAddress"/>
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/edadTxt"
+                    android:hint="@string/edad"
+                    android:inputType="number"/>
             </android.support.design.widget.TextInputLayout>
             <Button
                 android:layout_width="wrap_content"

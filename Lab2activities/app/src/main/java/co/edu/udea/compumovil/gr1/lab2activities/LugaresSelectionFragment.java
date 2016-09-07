@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,8 @@ import android.widget.Toast;
 public class LugaresSelectionFragment extends Fragment {
 
     private LinearLayoutManager linearLayout;
+    private RecyclerView reciclador;
+    private LugaresListAdapter adaptador;
 
     public LugaresSelectionFragment() {
         // Required empty public constructor
@@ -37,19 +40,27 @@ public class LugaresSelectionFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_lugares_selection, container, false);
 
-        RecyclerView reciclador = (RecyclerView)view.findViewById(R.id.seleccionReciclador);
+        reciclador = (RecyclerView)view.findViewById(R.id.seleccionReciclador);
         linearLayout = new LinearLayoutManager(getActivity());
         reciclador.setLayoutManager(linearLayout);
 
-        LugaresListAdapter adaptador = new LugaresListAdapter(new LugaresListAdapter.OnItemClickListener() {
+        adaptador = new LugaresListAdapter(new LugaresListAdapter.OnItemClickListener() {
             @Override public void onItemClick(int id) {
                 viewPlaceDetails(id);
             }
         });
+
         reciclador.setAdapter(adaptador);
         reciclador.addItemDecoration(new DecoracionLineaDivisoria(getActivity()));
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        LugaresListAdapter.LugarPrincipalDTO.getLugares();
+        adaptador.notifyDataSetChanged();
     }
 
     public void viewPlaceDetails(int id){

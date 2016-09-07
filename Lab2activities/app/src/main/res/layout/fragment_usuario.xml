@@ -4,11 +4,49 @@
     android:layout_height="match_parent"
     tools:context="co.edu.udea.compumovil.gr1.lab2activities.UsuarioFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment"
-        android:background="@android:color/holo_red_dark" />
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Large Text"
+            android:id="@+id/userNameUserFragmentTV"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:id="@+id/userImgFragmentTV"
+            android:layout_below="@+id/userNameUserFragmentTV"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/user_ph"
+            android:scaleType="centerCrop"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Edad: "
+            android:id="@+id/edadUserFragmentTV"
+            android:layout_below="@+id/userImgFragmentTV"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="24dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Email:"
+            android:id="@+id/emailUserFragmentTV"
+            android:layout_below="@+id/edadUserFragmentTV"
+            android:layout_centerHorizontal="true" />
+
+    </RelativeLayout>
 
 </FrameLayout>

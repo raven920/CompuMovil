@@ -33,8 +33,12 @@ public class LugaresListAdapter extends RecyclerView.Adapter<LugaresListAdapter.
         void onItemClick(int id);
     }
 
+
+
     public LugaresListAdapter(OnItemClickListener listener) {
         this.listener = listener;
+
+
     }
 
 
@@ -179,8 +183,10 @@ public class LugaresListAdapter extends RecyclerView.Adapter<LugaresListAdapter.
 
             try {
                 LUGARES.clear();
+
                 if (cursor.moveToFirst()) {
                     do{
+
                         l = new LugarPrincipalDTO();
                         l.id = cursor.getInt(cursor.getColumnIndex(Places.Column.ID));
                         l.nombre = cursor.getString(cursor.getColumnIndex(Places.Column.NOMBRE_LUGAR));
@@ -191,8 +197,11 @@ public class LugaresListAdapter extends RecyclerView.Adapter<LugaresListAdapter.
                         l.fotoPrincipal = DbBitmapUtility.getImage(imagen);
                         LUGARES.add(l);
                     }while(cursor.moveToNext());
+
                 }
-            }catch(Exception e){}
+            }catch(Exception e){
+
+            }
 
             cursor.close();
             return LUGARES;

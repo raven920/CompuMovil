@@ -4,11 +4,34 @@
     android:layout_height="match_parent"
     tools:context="co.edu.udea.compumovil.gr1.lab2activities.AcercaDeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment"
-        android:background="@android:color/holo_orange_light" />
+        android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Computación Móvil"
+            android:id="@+id/textView"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="El curso Computación Móvil introduce los conceptos básicos acerca del diseño y desarrollo de aplicaciones móviles. En el curso se tratan temas generales de computación móvil como arquitectura de dispositivos móviles y temas particulares en el desarrollo de aplicaciones en Android referentes a la arquitectura de software, manejo del framework de programación Android studio y desarrollo de interfaces de usuario utilizando Material Design. "
+            android:id="@+id/textView2"
+            android:layout_below="@+id/textView"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="51dp"
+            android:textSize="20dp" />
+    </RelativeLayout>
+    </ScrollView>
 
 </FrameLayout>

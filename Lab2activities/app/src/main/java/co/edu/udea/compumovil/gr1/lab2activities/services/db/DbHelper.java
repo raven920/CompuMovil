@@ -4,16 +4,14 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.provider.ContactsContract;
 import android.util.Base64;
 import android.util.Log;
 
-import co.edu.udea.compumovil.gr1.lab2activities.LugaresMainActivity;
 import co.edu.udea.compumovil.gr1.lab2activities.R;
 import co.edu.udea.compumovil.gr1.lab2activities.domain.system.dto.schema.Photos;
 import co.edu.udea.compumovil.gr1.lab2activities.domain.system.dto.schema.Places;
 import co.edu.udea.compumovil.gr1.lab2activities.domain.system.dto.schema.Users;
-import co.edu.udea.compumovil.gr1.lab2activities.services.DbBitmapUtility;
+
 
 /**
  * Created by raven on 23/08/16.
@@ -23,14 +21,16 @@ public class DbHelper extends SQLiteOpenHelper {
 
     public DbHelper(Context context){
         super(context, Users.DB_NAME, null, Users.DB_VERSION);
+        this.context = context;
     }
 
+    private Context context;
 
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        String sqlUsers = String.format("create table %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s text, %s text, %s text)",
-                Users.TABLE, Users.Column.ID, Users.Column.NOMBRE_USUARIO, Users.Column.CONTRASENA, Users.Column.EMAIL );
+        String sqlUsers = String.format("create table %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s text, %s text, %s text, %s integer, %s blob)",
+                Users.TABLE, Users.Column.ID, Users.Column.NOMBRE_USUARIO, Users.Column.CONTRASENA, Users.Column.EMAIL, Users.Column.EDAD, Users.Column.FOTO );
         String sqlPlaces = String.format("create table %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s text, %s text, %s integer, %s blob, %s double, %s double, %s text, %s text, %s text, %s text )",
                 Places.TABLE, Places.Column.ID, Places.Column.NOMBRE_LUGAR, Places.Column.DESCRIPCION, Places.Column.PUNTUACION, Places.Column.IMAGEN,
                 Places.Column.LONGITUD, Places.Column.LATITUD, Places.Column.ZOOM, Places.Column.INFO_GENERAL, Places.Column.TEMPERATURA, Places.Column.SITIOS_RECOMENDADOS );
@@ -65,7 +65,8 @@ public class DbHelper extends SQLiteOpenHelper {
         cv.put(Places.Column.SITIOS_RECOMENDADOS, "SkyTree Café: Deleitese con un delicioso café mientras disfruta de la vista.\n"+
                 "Sky Restaurant: Disfrute de la cocina de Tokyo, un nuevo tipo de cocina inspirada en la tradición japonesa.\n" +
                 "Piso de vidrio: Experimente la sensación única de mirar hacia el vacío por medio de una ventana en el piso a 340 metros de altura.");
-        imagen = LugaresMainActivity.getInstance().getResources().getString(R.string.skytreeImg);
+
+        imagen = context.getResources().getString(R.string.skytreeImg);
         decodedString = Base64.decode(imagen.getBytes(),Base64.DEFAULT);
         cv.put(Places.Column.IMAGEN, decodedString);
         db.insertWithOnConflict(Places.TABLE, null, cv, SQLiteDatabase.CONFLICT_IGNORE);
@@ -85,7 +86,7 @@ public class DbHelper extends SQLiteOpenHelper {
         cv.put(Places.Column.SITIOS_RECOMENDADOS, "Kaminarimon: La puerta del trueno, con su linterna y estatuas recibe a los turistas que llegan a conocer el lugar.\n" +
                 "Nakamise-Dori: Es la calle que lleva a Senso-ji, allí hay muchas pequeñas tiendas donde se pueden comprar souvenirs alusivos a Senso-ji.\n" +
                 "Jardín del Templo: Disfrute del hermoso paisaje que brinda el jardín estilo japonés del templo.");
-        imagen = LugaresMainActivity.getInstance().getResources().getString(R.string.sensojiImg);
+        imagen = context.getResources().getString(R.string.sensojiImg);
         decodedString = Base64.decode(imagen.getBytes(),Base64.DEFAULT);
         cv.put(Places.Column.IMAGEN, decodedString);
         db.insertWithOnConflict(Places.TABLE, null, cv, SQLiteDatabase.CONFLICT_IGNORE);
@@ -95,6 +96,7 @@ public class DbHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         db.execSQL("drop table if exists " + Users.TABLE);
         db.execSQL("drop table if exists " + Places.TABLE);
+        db.execSQL("drop table if exists " + Photos.TABLE);
         onCreate(db);
     }
 }

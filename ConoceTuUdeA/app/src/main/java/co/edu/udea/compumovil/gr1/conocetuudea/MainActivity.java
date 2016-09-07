@@ -96,6 +96,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         if(f != null){
+            //PreferenceFr
             ft.replace(R.id.misionesFragmentContainer,f);
             ft.commit();
         }

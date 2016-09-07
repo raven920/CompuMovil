@@ -1,6 +1,8 @@
 package co.edu.udea.compumovil.gr1.lab2activities;
 
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -16,6 +18,9 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import co.edu.udea.compumovil.gr1.lab2activities.domain.system.dto.schema.Places;
+import co.edu.udea.compumovil.gr1.lab2activities.services.db.DbHelper;
 
 
 /**
@@ -59,11 +64,22 @@ public class MapLugarFragment extends Fragment implements OnMapReadyCallback {
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(35.7100627d, 139.8085117d);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        DbHelper dbHelper = new DbHelper(LugaresMainActivity.getContext());
+        SQLiteDatabase sqldb = dbHelper.getReadableDatabase();
+        String Query = "select * from " + Places.TABLE+ " where "+Places.Column.ID +" = "+placeId;
+        Cursor cursor = sqldb.rawQuery(Query, null);
+        String nombre = "";
+        double lat = 35.7100627d, lon =  139.8085117d;
+
+        if(cursor.moveToFirst()){
+            lat = cursor.getDouble(cursor.getColumnIndex(Places.Column.LATITUD));
+            lon = cursor.getDouble(cursor.getColumnIndex(Places.Column.LONGITUD));
+            nombre = cursor.getString(cursor.getColumnIndex(Places.Column.NOMBRE_LUGAR));
+        }
+        mMap = googleMap;
+        LatLng sydney = new LatLng(lat,lon);
+        mMap.addMarker(new MarkerOptions().position(sydney).title(nombre));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
         mMap.animateCamera(CameraUpdateFactory.zoomTo(17));
     }

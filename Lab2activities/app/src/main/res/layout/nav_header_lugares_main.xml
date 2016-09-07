@@ -12,11 +12,13 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/userImageIV"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:src="@android:drawable/sym_def_app_icon" />
+        android:scaleType="centerCrop"
+        android:src="@android:drawable/sym_def_app_icon"
+        />
 
     <TextView
         android:layout_width="match_parent"
@@ -30,7 +32,6 @@
         android:id="@+id/emailTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:text="android.studio@android.com" />
 
 </LinearLayout>
