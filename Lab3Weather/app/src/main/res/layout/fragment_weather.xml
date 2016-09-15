@@ -54,6 +54,15 @@
             android:layout_gravity="center"
             android:textSize="30dp"
             android:layout_centerInParent="true"/>
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/icon_image"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:minHeight="20dp"
+            android:minWidth="20dp"
+            />
 
         <Button
 

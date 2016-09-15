@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -17,6 +18,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+
 
 import org.json.JSONObject;
 
@@ -29,11 +33,13 @@ import co.edu.udea.compumovil.gr1.lab3weather.R;
  */
 public class weatherFr extends Fragment {
 
+    ImageView iconView;
     Button getWeather;
     TextView city,humidity,temp,description,icon;
     Gson outGson;
     weatherPOJO wp;
     private final String API_KEY="b5bba053e2710075bb43d91499ed270a";
+    ImageLoader imageLoader= ImageLoader.getInstance();
 
     public weatherFr() {
 
@@ -51,7 +57,7 @@ public class weatherFr extends Fragment {
         temp=(TextView) thisview.findViewById(R.id.txt_temp);
         description=(TextView) thisview.findViewById(R.id.txt_description);
         icon= (TextView) thisview.findViewById(R.id.txt_icon);
-
+        iconView=(ImageView) thisview.findViewById(R.id.icon_image);
        getWeather=(Button)thisview.findViewById(R.id.btn_weather);
 
 
@@ -59,9 +65,9 @@ public class weatherFr extends Fragment {
             @Override
             public void onClick(View v) {
                 RequestQueue queue = Volley.newRequestQueue(getContext());
-                String ciudad="Medellin";
-                String url ="http://api.openweathermap.org/data/2.5/weather?q="+ciudad+",co&appid="+API_KEY+"&lang=en&units=metric";
-                //String url="http://api.openweathermap.org/data/2.5/weather?q=medellin&appid="+API_KEY;
+                String ciudad="Cartagena";
+                String url ="http://api.openweathermap.org/data/2.5/weather?q="+ciudad+",CO&appid="+API_KEY+"&lang=en&units=metric";
+            final String urlImage="http://openweathermap.org/img/w/";
 // Request a string response from the provided URL.
                 JsonObjectRequest jsObjRequest = new JsonObjectRequest
                         (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -76,9 +82,12 @@ public class weatherFr extends Fragment {
 
                                 city.setText(wp.getName());
                                 description.setText(wp.getWeather().get(0).getDescription());
-                                temp.setText(Integer.toString(wp.getMain().getTemp()));
-                                humidity.setText(Integer.toString(wp.getMain().getHumidity()));
+                                temp.setText(Double.toString(wp.getMain().getTemp()));
+                                humidity.setText(Double.toString(wp.getMain().getHumidity()));
                                 icon.setText(wp.getWeather().get(0).getIcon());
+
+                                imageLoader.init(ImageLoaderConfiguration.createDefault(getContext()));
+                                imageLoader.displayImage(urlImage+wp.getWeather().get(0).getIcon()+".png",iconView);
                                // Log.d("weather.java",wp.getName()+wp.getMain().getTemp()+wp.getMain().getHumidity()+wp.getWeatherList().get(0).getDescription()+wp.getWeatherList().get(0).getIcon());
 
                             }

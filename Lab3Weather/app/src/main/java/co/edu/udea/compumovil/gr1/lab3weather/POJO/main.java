@@ -4,47 +4,47 @@ package co.edu.udea.compumovil.gr1.lab3weather.POJO;
  * Created by duvan.bedoya on 12/09/16.
  */
 public class main {
-    int temp,pressure,humidity,temp_min,temp_max;
+    double temp,pressure,humidity,temp_min,temp_max;
     public main() {
     }
 
-    public int getTemp() {
+    public double getTemp() {
         return temp;
     }
 
-    public void setTemp(int temp) {
+    public void setTemp(double temp) {
         this.temp = temp;
     }
 
-    public int getPressure() {
+    public double getPressure() {
         return pressure;
     }
 
-    public void setPressure(int pressure) {
+    public void setPressure(double pressure) {
         this.pressure = pressure;
     }
 
-    public int getHumidity() {
+    public double getHumidity() {
         return humidity;
     }
 
-    public void setHumidity(int humidity) {
+    public void setHumidity(double humidity) {
         this.humidity = humidity;
     }
 
-    public int getTemp_min() {
+    public double getTemp_min() {
         return temp_min;
     }
 
-    public void setTemp_min(int temp_min) {
+    public void setTemp_min(double temp_min) {
         this.temp_min = temp_min;
     }
 
-    public int getTemp_max() {
+    public double getTemp_max() {
         return temp_max;
     }
 
-    public void setTemp_max(int temp_max) {
+    public void setTemp_max(double temp_max) {
         this.temp_max = temp_max;
     }
 }
