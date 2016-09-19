@@ -65,7 +65,7 @@ public class weatherFr extends Fragment {
             @Override
             public void onClick(View v) {
                 RequestQueue queue = Volley.newRequestQueue(getContext());
-                String ciudad="Cartagena";
+                String ciudad="Medellin";
                 String url ="http://api.openweathermap.org/data/2.5/weather?q="+ciudad+",CO&appid="+API_KEY+"&lang=en&units=metric";
             final String urlImage="http://openweathermap.org/img/w/";
 // Request a string response from the provided URL.
