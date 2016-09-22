@@ -33,6 +33,7 @@ import co.edu.udea.compumovil.gr1.lab3weather.R;
  */
 public class weatherFr extends Fragment {
 
+    //private MyReceiver myReceiver;
     ImageView iconView;
     Button getWeather;
     TextView city,humidity,temp,description,icon;

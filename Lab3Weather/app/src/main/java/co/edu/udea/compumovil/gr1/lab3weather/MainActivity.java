@@ -1,5 +1,6 @@
 package co.edu.udea.compumovil.gr1.lab3weather;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -17,10 +18,15 @@ import org.w3c.dom.Text;
 
 import co.edu.udea.compumovil.gr1.lab3weather.Fragments.settings;
 import co.edu.udea.compumovil.gr1.lab3weather.Fragments.weatherFr;
+import co.edu.udea.compumovil.gr1.lab3weather.Services.WeatherService;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    public static String TIME_TAG="TIME";
+    public static String CITY_TAG="CITY";
+    public static  String ACTION_CUSTOM = "action.custom";
+    public static String OBJECT_WP="OBJECT";
 
     FragmentManager fm;
     Fragment finicial;
@@ -32,6 +38,8 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        Intent i = new Intent(this, WeatherService.class);
+        this.startService(i);
 
 
 
