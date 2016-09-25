@@ -16,7 +16,6 @@ import com.google.gson.Gson;
 
 import org.json.JSONObject;
 
-import java.io.Serializable;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -25,12 +24,13 @@ import co.edu.udea.compumovil.gr1.lab3weather.POJO.weather;
 import co.edu.udea.compumovil.gr1.lab3weather.POJO.weatherPOJO;
 
 /**
- * Created by duvan.bedoya on 22/09/16.
+ * Created by gary on 24/09/2016.
  */
 public class WeatherService extends Service {
 
+
     private static final String TAG ="WeatherService.java";
-    private final String API_KEY="a114981a45d6ad13ade4e27c615513b9";
+    private final String API_KEY="b5bba053e2710075bb43d91499ed270a";
     Gson outGson;
     weather w=new weather();
     public weatherPOJO wp;
@@ -113,6 +113,8 @@ public class WeatherService extends Service {
     public boolean onUnbind(Intent intent) {
         return super.onUnbind(intent);
     }
+
+
 
     @Nullable
     @Override

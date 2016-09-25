@@ -1,9 +1,9 @@
 package co.edu.udea.compumovil.gr1.lab3weather.POJO;
 
+import java.util.List;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.List;
 
 /**
  * Created by duvan.bedoya on 12/09/16.
@@ -15,6 +15,8 @@ public class weatherPOJO implements Parcelable {
     coord coord;
     main main;
     List<weather> weather;
+
+
 
     public weatherPOJO() {
     }
