@@ -31,6 +31,9 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import org.apache.commons.lang3.text.WordUtils;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import co.edu.udea.compumovil.gr1.lab3weather.MainActivity;
 import co.edu.udea.compumovil.gr1.lab3weather.POJO.weatherPOJO;
 import co.edu.udea.compumovil.gr1.lab3weather.R;
@@ -46,11 +49,14 @@ public class weatherFr extends Fragment {
     final String  urlImage="http://openweathermap.org/img/w/";
     ImageView iconView;
     //Button getWeather;
-    TextView city,humidity,temp,description,icon;
+    TextView city,humidity,temp,description,icon,ultimaVista;
     //Gson outGson;
     weatherPOJO wp;
    // private final String API_KEY="b5bba053e2710075bb43d91499ed270a";
     ImageLoader imageLoader= ImageLoader.getInstance();
+
+    Calendar cal;
+    SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
 
     public weatherFr() {
 
@@ -68,7 +74,9 @@ public class weatherFr extends Fragment {
         temp=(TextView) thisview.findViewById(R.id.txt_temp);
         description=(TextView) thisview.findViewById(R.id.txt_description);
         icon= (TextView) thisview.findViewById(R.id.txt_icon);
+        ultimaVista=(TextView) thisview.findViewById(R.id.txt_actual);
         iconView=(ImageView) thisview.findViewById(R.id.icon_image);
+
        //getWeather=(Button)thisview.findViewById(R.id.btn_weather);
         imageLoader.init(ImageLoaderConfiguration.createDefault(getContext()));
 
@@ -199,6 +207,10 @@ public class weatherFr extends Fragment {
         temp.setText("\t"+Double.toString(wp.getMain().getTemp()));
         humidity.setText("\t"+Double.toString(wp.getMain().getHumidity()));
         imageLoader.displayImage(urlImage+wp.getWeather().get(0).getIcon()+".png",iconView);
+        cal=Calendar.getInstance();
+        ultimaVista.setText(sdf.format(cal.getTime()));
+
+
 
     }
 

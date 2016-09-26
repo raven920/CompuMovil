@@ -8,4 +8,46 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="spinner_time">
+        <item>10</item>
+        <item>20</item>
+        <item>30</item>
+        <item>40</item>
+        <item>50</item>
+        <item>60</item>
+    </string-array>
+    <string-array name="ciudades_array">
+        <item>Santa Marta</item>
+        <item>Medellin</item>
+        <item>Mariquita</item>
+        <item>Leticia</item>
+        <item>Cartagena</item>
+        <item>Bogota</item>
+        <item>Barranquilla</item>
+        <item>Bucaramanga</item>
+        <item>Cucuta</item>
+        <item>Cali</item>
+        <item>Tulua</item>
+        <item>Chia</item>
+        <item>Barrancabermeja</item>
+        <item>Duitama</item>
+        <item>Soledad</item>
+        <item>Sincelejo</item>
+        <item>Yopal</item>
+        <item>San Gil</item>
+        <item>Chinchina</item>
+        <item>Floridablanca</item>
+        <item>Ubaque</item>
+        <item>Anapoima</item>
+        <item>Rionegro</item>
+        <item>Angostura</item>
+        <item>Sopetrán</item>
+        <item>Guarne</item>
+        <item>Santa Rosa de Osos</item>
+        <item>Choachi</item>
+        <item>Zipaquira</item>
+        <item>Tunja</item>
+    </string-array>
+
 </resources>

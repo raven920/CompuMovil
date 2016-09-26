@@ -37,26 +37,32 @@ public class WeatherService extends Service {
     weatherFr w= new weatherFr();
     public weatherPOJO wp;
     TimerTask timerTask;
-    int tiempo=MainActivity.time;
-    String ciudad=MainActivity.ciudad;
-
+    public  int tiempo=MainActivity.time;
+    public  String ciudad=MainActivity.ciudad;
+    Timer timer= new Timer();
 
 
     @Override
     public void onCreate() {
         Log.d(TAG, "Servicio CREADO...");
         super.onCreate();
-        Timer timer= new Timer();
+
         //DEFINIR VARIABLE
         /*int time=intent.getIntExtra(MainActivity.CITY_TAG,50);
         String ciudad =intent.getStringExtra(MainActivity.CITY_TAG);*/
 
+            timerCreate();
 
+            //EL TIEMPO HAY QUE CAMBIARLO EN LOS SETTINGS
+        Schedule();
+    }
+
+    public void timerCreate(){
         timerTask =new TimerTask() {
             @Override
             public void run() {
                 //RequestQueue queue= Volley.newRequestQueue(getBaseContext());
-                String url="http://api.openweathermap.org/data/2.5/weather?q=medellin,CO&appid="+API_KEY+"&lang=en&units=metric";
+                String url="http://api.openweathermap.org/data/2.5/weather?q="+ciudad+",CO&appid="+API_KEY+"&lang=en&units=metric";
 
 
                 JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,url, null, new Response.Listener<JSONObject>(){
@@ -88,27 +94,33 @@ public class WeatherService extends Service {
 
                     }
                 });
-               // queue.add(jsonObjectRequest);
+                // queue.add(jsonObjectRequest);
 
                 MySingleton.getInstance(getBaseContext()).addToRequestQueue(jsonObjectRequest);
             }
 
-
-
-
-
-
-
-
         };
-            //EL TIEMPO HAY QUE CAMBIARLO EN LOS SETTINGS
 
-        timer.scheduleAtFixedRate(timerTask, 0, 10*1000);
+    }
+
+    public void Schedule(){
+        timer.scheduleAtFixedRate(timerTask, 0, tiempo*1000);
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.d(TAG, "El TIEMPO ES: "+tiempo+" EN LA CIUDAD "+ciudad);
+
+        timerTask.cancel();
+        tiempo=intent.getIntExtra(MainActivity.TIME_TAG,60);
+        if(intent.getStringExtra(MainActivity.CITY_TAG)!=null){
+            ciudad=intent.getStringExtra(MainActivity.CITY_TAG);
+
+        }else{
+            ciudad=MainActivity.ciudad;
+        }
+        timerCreate();
+        Schedule();
 
         return START_STICKY;
 
