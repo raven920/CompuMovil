@@ -19,9 +19,11 @@ import org.json.JSONObject;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import co.edu.udea.compumovil.gr1.lab3weather.Fragments.weatherFr;
 import co.edu.udea.compumovil.gr1.lab3weather.MainActivity;
 import co.edu.udea.compumovil.gr1.lab3weather.POJO.weather;
 import co.edu.udea.compumovil.gr1.lab3weather.POJO.weatherPOJO;
+import co.edu.udea.compumovil.gr1.lab3weather.Singleton.MySingleton;
 
 /**
  * Created by gary on 24/09/2016.
@@ -32,12 +34,17 @@ public class WeatherService extends Service {
     private static final String TAG ="WeatherService.java";
     private final String API_KEY="b5bba053e2710075bb43d91499ed270a";
     Gson outGson;
-    weather w=new weather();
+    weatherFr w= new weatherFr();
     public weatherPOJO wp;
     TimerTask timerTask;
+    int tiempo=MainActivity.time;
+    String ciudad=MainActivity.ciudad;
+
+
 
     @Override
     public void onCreate() {
+        Log.d(TAG, "Servicio CREADO...");
         super.onCreate();
         Timer timer= new Timer();
         //DEFINIR VARIABLE
@@ -48,7 +55,7 @@ public class WeatherService extends Service {
         timerTask =new TimerTask() {
             @Override
             public void run() {
-                RequestQueue queue= Volley.newRequestQueue(getBaseContext());
+                //RequestQueue queue= Volley.newRequestQueue(getBaseContext());
                 String url="http://api.openweathermap.org/data/2.5/weather?q=medellin,CO&appid="+API_KEY+"&lang=en&units=metric";
 
 
@@ -64,6 +71,13 @@ public class WeatherService extends Service {
                         intent.putExtra(MainActivity.OBJECT_WP,wp);
                         // weather.mBroadcastManager.sendBroadcastSync(intent);
 
+                        if(MainActivity.active) {
+                            weatherFr.mBroadcastManager.sendBroadcastSync(intent);
+                        }else{
+
+                            //codigo para widgets
+                        }
+
 
                     }
                 }, new Response.ErrorListener() {
@@ -74,9 +88,9 @@ public class WeatherService extends Service {
 
                     }
                 });
-                queue.add(jsonObjectRequest);
+               // queue.add(jsonObjectRequest);
 
-
+                MySingleton.getInstance(getBaseContext()).addToRequestQueue(jsonObjectRequest);
             }
 
 
@@ -87,12 +101,14 @@ public class WeatherService extends Service {
 
 
         };
+            //EL TIEMPO HAY QUE CAMBIARLO EN LOS SETTINGS
 
         timer.scheduleAtFixedRate(timerTask, 0, 10*1000);
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        Log.d(TAG, "El TIEMPO ES: "+tiempo+" EN LA CIUDAD "+ciudad);
 
         return START_STICKY;
 
