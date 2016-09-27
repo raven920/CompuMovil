@@ -22,7 +22,7 @@
         android:textSize="40dp" />
     <AutoCompleteTextView
         android:id="@+id/Ciudades"
-        android:hint="Ciudad de Colombia"
+        android:hint="Escriba una Ciudad (Col)"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

@@ -48,6 +48,17 @@
         <item>Choachi</item>
         <item>Zipaquira</item>
         <item>Tunja</item>
+        <item>Mompos</item>
+        <item>Malaga</item>
+        <item>Ayapel</item>
+        <item>Rondiña</item>
+        <item></item>
+        <item>Chananané</item>
+        <item>Gaira</item>
+        <item>Puerto Chigüiro</item>
+        <item>Mocoa</item>
+        <item>Miraflores</item>
+
     </string-array>
     <string name="appwidget_text">Acá debe ir La info 2</string>
     <string name="add_widget">Add widget</string>
