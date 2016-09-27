@@ -1,6 +1,7 @@
 package co.edu.udea.compumovil.gr1.lab3weather.Services;
 
 import android.app.Service;
+import android.appwidget.AppWidgetManager;
 import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
@@ -82,6 +83,7 @@ public class WeatherService extends Service {
                         }else{
 
                             //codigo para widgets
+
                         }
 
 

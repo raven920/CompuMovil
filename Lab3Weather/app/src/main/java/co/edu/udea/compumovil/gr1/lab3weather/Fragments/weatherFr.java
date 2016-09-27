@@ -94,7 +94,7 @@ public class weatherFr extends Fragment {
             Log.d("Saving",wp.getName()+wp.getMain().getTemp()+wp.getMain().getHumidity()+wp.getWeather().get(0).getDescription()+wp.getWeather().get(0).getIcon());
             updateUI(wp);
         }
-        
+
         // Inflate the layout for this fragment
         return thisview;
     }

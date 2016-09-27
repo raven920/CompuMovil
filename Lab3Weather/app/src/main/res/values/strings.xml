@@ -49,7 +49,7 @@
         <item>Zipaquira</item>
         <item>Tunja</item>
     </string-array>
-    <string name="appwidget_text">Acá debe ir La info</string>
+    <string name="appwidget_text">Acá debe ir La info 2</string>
     <string name="add_widget">Add widget</string>
 
 </resources>
