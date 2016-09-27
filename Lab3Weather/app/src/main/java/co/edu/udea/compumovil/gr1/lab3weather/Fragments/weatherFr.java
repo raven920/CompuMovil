@@ -73,7 +73,7 @@ public class weatherFr extends Fragment {
         humidity=(TextView) thisview.findViewById(R.id.txt_humidity);
         temp=(TextView) thisview.findViewById(R.id.txt_temp);
         description=(TextView) thisview.findViewById(R.id.txt_description);
-        icon= (TextView) thisview.findViewById(R.id.txt_icon);
+        //icon= (TextView) thisview.findViewById(R.id.txt_icon);
         ultimaVista=(TextView) thisview.findViewById(R.id.txt_actual);
         iconView=(ImageView) thisview.findViewById(R.id.icon_image);
 
@@ -94,54 +94,7 @@ public class weatherFr extends Fragment {
             Log.d("Saving",wp.getName()+wp.getMain().getTemp()+wp.getMain().getHumidity()+wp.getWeather().get(0).getDescription()+wp.getWeather().get(0).getIcon());
             updateUI(wp);
         }
-
-       /*//--------------------------------------------------------------------------------------------------
-        getWeather.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                RequestQueue queue = Volley.newRequestQueue(getContext());
-                String ciudad="Medellin";
-                String url ="http://api.openweathermap.org/data/2.5/weather?q="+ciudad+",CO&appid="+API_KEY+"&lang=en&units=metric";
-            final String urlImage="http://openweathermap.org/img/w/";
-// Request a string response from the provided URL.
-                JsonObjectRequest jsObjRequest = new JsonObjectRequest
-                        (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                //tvWeather.setText("Response: " + response.toString());
-                                outGson=new Gson();
-                                Log.d("weather.java",response.toString());
-                                wp=outGson.fromJson(response.toString(),weatherPOJO.class);
-                               // Log.d("weather.java",wp.getWeatherList().get(0).getDescription());
-
-                                city.setText(wp.getName());
-                                description.setText(wp.getWeather().get(0).getDescription());
-                                temp.setText(Double.toString(wp.getMain().getTemp()));
-                                humidity.setText(Double.toString(wp.getMain().getHumidity()));
-                                icon.setText(wp.getWeather().get(0).getIcon());
-
-                                imageLoader.init(ImageLoaderConfiguration.createDefault(getContext()));
-                                imageLoader.displayImage(urlImage+wp.getWeather().get(0).getIcon()+".png",iconView);
-                               // Log.d("weather.java",wp.getName()+wp.getMain().getTemp()+wp.getMain().getHumidity()+wp.getWeatherList().get(0).getDescription()+wp.getWeatherList().get(0).getIcon());
-
-                            }
-                        }, new Response.ErrorListener() {
-
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                // TODO Auto-generated method stub
-
-                            }
-                        });
-// Add the request to the RequestQueue.
-                queue.add(jsObjRequest);
-            }
-        });*/
-    //-------------_-------_--------------------------------------------------------------
-
-
-
+        
         // Inflate the layout for this fragment
         return thisview;
     }
