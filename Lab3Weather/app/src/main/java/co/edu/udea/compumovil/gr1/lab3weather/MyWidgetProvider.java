@@ -42,8 +42,7 @@ public class MyWidgetProvider extends AppWidgetProvider {
             RemoteViews remoteViews = new RemoteViews(context.getPackageName(),
                     R.layout.my_widget_provider);
             Log.w("Widget clima aplication", String.valueOf(number));
-            WeatherService ws= new WeatherService();
-            ws.onCreate();
+
 
 
             // Set the text

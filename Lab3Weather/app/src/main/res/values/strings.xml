@@ -60,7 +60,7 @@
         <item>Miraflores</item>
 
     </string-array>
-    <string name="appwidget_text">Acá debe ir La info 2</string>
+    <string name="appwidget_text">Informacion del clima</string>
     <string name="add_widget">Add widget</string>
 
 </resources>
