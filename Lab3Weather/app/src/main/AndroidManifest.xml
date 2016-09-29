@@ -3,6 +3,8 @@
     package="co.edu.udea.compumovil.gr1.lab3weather">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.VIBRATE"/>
 
     <application
         android:allowBackup="true"
@@ -22,6 +24,12 @@
         </activity>
 
         <service android:name=".Services.WeatherService" />
+        <receiver android:name="co.edu.udea.compumovil.gr1.lab3weather.BroadcastReceivers.BootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
 
         <receiver android:name=".MyWidgetProvider">
             <intent-filter>

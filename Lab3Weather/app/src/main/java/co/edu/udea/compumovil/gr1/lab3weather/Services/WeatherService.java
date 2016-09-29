@@ -57,9 +57,7 @@ public class WeatherService extends Service {
         Log.d(TAG, "Servicio CREADO...");
         super.onCreate();
 
-        //DEFINIR VARIABLE
-        /*int time=intent.getIntExtra(MainActivity.CITY_TAG,50);
-        String ciudad =intent.getStringExtra(MainActivity.CITY_TAG);*/
+
 
             timerCreate();
 
@@ -81,7 +79,7 @@ public class WeatherService extends Service {
                     public void onResponse(JSONObject response) {
                         outGson=new Gson();
                         wp=outGson.fromJson(response.toString(),weatherPOJO.class);
-                        Log.d(TAG,wp.getName()+wp.getMain().getTemp()+wp.getMain().getHumidity()+wp.getWeather().get(0).getDescription()+wp.getWeather().get(0).getIcon());
+                        Log.d("weather.java",wp.getName()+wp.getMain().getTemp()+wp.getMain().getHumidity()+wp.getWeather().get(0).getDescription()+wp.getWeather().get(0).getIcon());
                         Intent intent = new Intent();
                         intent.setAction(MainActivity.ACTION_CUSTOM);
                         intent.putExtra(MainActivity.OBJECT_WP,wp);
@@ -91,7 +89,7 @@ public class WeatherService extends Service {
                             weatherFr.mBroadcastManager.sendBroadcastSync(intent);
                         }else{
 
-                            //codigo para widgets
+                            //codigo para Notificacion
 
                             Intent resultIntent = new Intent(getApplicationContext(), MainActivity.class);
                             PendingIntent resultPendingIntent =
@@ -116,7 +114,7 @@ public class WeatherService extends Service {
                             NotificationCompat.Builder mBuilder =
                                     new NotificationCompat.Builder(getApplicationContext())
                                             .setSmallIcon(R.drawable.rainy)
-                                            .setContentTitle("Clima para hoy")
+                                            .setContentTitle("Clima Para este Dia")
                                             .setContentText(WordUtils.capitalize(wp.getWeather().get(0).getDescription()))
                                             .setDefaults(Notification.DEFAULT_ALL) // requires VIBRATE permission
                                             .setContentIntent(resultPendingIntent)
@@ -157,25 +155,7 @@ public class WeatherService extends Service {
         timer.scheduleAtFixedRate(timerTask, 0, tiempo*1000);
     }
 
-    /*@Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.d(TAG, "El TIEMPO ES: "+tiempo+" EN LA CIUDAD "+ciudad);
 
-        timerTask.cancel();
-        tiempo=intent.getIntExtra(MainActivity.TIME_TAG,60);
-        if(intent.getStringExtra(MainActivity.CITY_TAG)!=null){
-            ciudad=intent.getStringExtra(MainActivity.CITY_TAG);
-
-        }else{
-            ciudad=MainActivity.ciudad;
-        }
-        timerCreate();
-        Schedule();
-
-        return START_STICKY;
-
-
-    }*/
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -205,9 +185,7 @@ public class WeatherService extends Service {
             int[] allWidgetIds = intent
                     .getIntArrayExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS);
 
-//                ComponentName thisWidget = new ComponentName(getApplicationContext(),
-//                                MyWidgetProvider.class);
-//                int[] allWidgetIds2 = appWidgetManager.getAppWidgetIds(thisWidget);
+
 
             for (int widgetId : allWidgetIds) {
                 // create some random data
@@ -232,7 +210,7 @@ public class WeatherService extends Service {
                 PendingIntent pendingIntent = PendingIntent.getBroadcast(
                         getApplicationContext(), 0, clickIntent,
                         PendingIntent.FLAG_UPDATE_CURRENT);
-                remoteViews.setOnClickPendingIntent(R.id.ciudad, pendingIntent);
+                remoteViews.setOnClickPendingIntent(R.id.appwidget_text, pendingIntent);
                 appWidgetManager.updateAppWidget(widgetId, remoteViews);
             }
         }

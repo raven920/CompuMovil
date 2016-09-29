@@ -52,7 +52,7 @@ public class weatherFr extends Fragment {
     TextView city,humidity,temp,description,icon,ultimaVista;
     //Gson outGson;
     weatherPOJO wp;
-   // private final String API_KEY="b5bba053e2710075bb43d91499ed270a";
+
     ImageLoader imageLoader= ImageLoader.getInstance();
 
     Calendar cal;
@@ -73,11 +73,8 @@ public class weatherFr extends Fragment {
         humidity=(TextView) thisview.findViewById(R.id.txt_humidity);
         temp=(TextView) thisview.findViewById(R.id.txt_temp);
         description=(TextView) thisview.findViewById(R.id.txt_description);
-        //icon= (TextView) thisview.findViewById(R.id.txt_icon);
         ultimaVista=(TextView) thisview.findViewById(R.id.txt_actual);
         iconView=(ImageView) thisview.findViewById(R.id.icon_image);
-
-       //getWeather=(Button)thisview.findViewById(R.id.btn_weather);
         imageLoader.init(ImageLoaderConfiguration.createDefault(getContext()));
 
         myReceiver = new MyReceiver();
@@ -110,23 +107,19 @@ public class weatherFr extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        if (savedInstanceState != null) {
-            wp=savedInstanceState.getParcelable(MainActivity.OBJECT_WP);
-            Log.d("Saving",wp.getName()+wp.getMain().getTemp()+wp.getMain().getHumidity()+wp.getWeather().get(0).getDescription()+wp.getWeather().get(0).getIcon());
-            updateUI(wp);
-            // Restore last state for checked position.
 
-        }
     }
+
+
+
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        Log.d("Saving",wp.getName()+wp.getMain().getTemp()+wp.getMain().getHumidity()+wp.getWeather().get(0).getDescription()+wp.getWeather().get(0).getIcon());
 
-        outState.putParcelable(MainActivity.OBJECT_WP,wp);
-        //Save the fragment's state here
 
     }
+
+
 
 
     public class MyReceiver extends BroadcastReceiver {
@@ -135,14 +128,12 @@ public class weatherFr extends Fragment {
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            // if(MainActivity.progress.isShowing()){
-            //MainActivity.progress.dismiss();
-            //}
+
 
             wp=intent.getParcelableExtra(MainActivity.OBJECT_WP);
             if(wp!=null){
                 updateUI(wp);
-                // Log.d("weather.java",wp.getName()+wp.getMain().getTemp()+wp.getMain().getHumidity()+wp.getWeather().get(0).getDescription()+wp.getWeather().get(0).getIcon());
+
             }
 
             Log.d(TAG, "INTENT RECEIVED");

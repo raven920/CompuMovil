@@ -80,9 +80,6 @@ public class MainActivity extends AppCompatActivity
                 .replace(R.id.content_main,fragmentWeather)
                 .commit();
 
-        //progress = ProgressDialog.show(this, "Cargando...","Por favor espere", true);
-
-     //---------------------------------------------------------------------
 
 
     }
@@ -114,9 +111,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
 
