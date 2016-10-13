@@ -23,4 +23,14 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="perfil">Perfil</string>
     <string name="logros">Logros</string>
+
+    <string-array name="char_names">
+        <item>Wizard</item>
+        <item>Warrior</item>
+    </string-array>
+
+    <string-array name="char_infos">
+        <item>Es un super Mago que tiene poderes muy chéveres :)</item>
+        <item>Es un super guerrero que tiene poderes muy chéveres :)</item>
+    </string-array>
 </resources>

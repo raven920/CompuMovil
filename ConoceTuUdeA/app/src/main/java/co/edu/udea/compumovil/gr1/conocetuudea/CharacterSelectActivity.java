@@ -1,5 +1,6 @@
 package co.edu.udea.compumovil.gr1.conocetuudea;
 
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -16,7 +17,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class CharacterSelectActivity extends AppCompatActivity {
 
@@ -50,15 +57,6 @@ public class CharacterSelectActivity extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
     }
 
@@ -94,6 +92,7 @@ public class CharacterSelectActivity extends AppCompatActivity {
          * fragment.
          */
         private static final String ARG_SECTION_NUMBER = "section_number";
+        private static final int[] images = {R.drawable.wizard, R.drawable.warrior};
 
         public PlaceholderFragment() {
         }
@@ -113,10 +112,43 @@ public class CharacterSelectActivity extends AppCompatActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_character_select, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+            final int section = getArguments().getInt(ARG_SECTION_NUMBER)-1;
+            final View rootView = inflater.inflate(R.layout.fragment_character_select, container, false);
+            String[] char_names = rootView.getResources().getStringArray(R.array.char_names);
+            String[] char_infos = rootView.getResources().getStringArray(R.array.char_infos);
+            TextView name = (TextView) rootView.findViewById(R.id.char_name);
+            TextView description = (TextView) rootView.findViewById(R.id.char_info);
+            Button bSelect = (Button) rootView.findViewById(R.id.char_select);
+            ImageView iv = (ImageView) rootView.findViewById(R.id.char_img);
+
+            name.setText(char_names[section]);
+            description.setText(char_infos[section]);
+            iv.setImageResource(images[section]);
+
+            bSelect.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    DatabaseReference mDatabase;
+                    FirebaseAuth auth;
+
+                    auth = FirebaseAuth.getInstance();
+                    mDatabase = FirebaseDatabase.getInstance().getReference();
+
+                    if (auth.getCurrentUser() != null) {
+                        mDatabase.child("users").child(auth.getCurrentUser().getUid()).child("charId").setValue(section);
+                        Intent i = new Intent(rootView.getContext(), MainActivity.class);
+                        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(i);
+
+                    }
+                }
+            });
+
             return rootView;
+        }
+
+        public void onSelectClick(View v){
+
         }
     }
 
@@ -140,7 +172,7 @@ public class CharacterSelectActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 3;
+            return 2;
         }
 
         @Override

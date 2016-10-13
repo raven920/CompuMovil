@@ -48,7 +48,7 @@ public class AvancesFragment extends Fragment {
 
     private void insertarTabs(ViewGroup container) {
         View padre = (View) container.getParent();
-        appBar = (AppBarLayout) padre.findViewById(R.id.avancesMainAppBarCoordinator);
+        appBar = (AppBarLayout) padre.findViewById(R.id.avancesMainAppBarLayout);
         pestanas = new TabLayout(getActivity());
         pestanas.setTabTextColors(Color.parseColor("#FFFFFF"), Color.parseColor("#FFFFFF"));
         appBar.addView(pestanas);

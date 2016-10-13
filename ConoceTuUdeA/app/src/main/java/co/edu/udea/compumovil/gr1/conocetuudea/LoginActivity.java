@@ -9,12 +9,26 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.firebase.ui.auth.AuthUI;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import co.edu.udea.compumovil.gr1.conocetuudea.domain.db.User;
 
 public class LoginActivity extends AppCompatActivity {
 
-    public static final int REGISTER_REQUEST = 50;
+    public static final int LOGIN_REQ = 50;
+
+    private static boolean persistedEnabled = false;
 
     public static final String LOGGED_USER = "loggedUser";
     public static final String TAG = "LoginTAG";
@@ -24,16 +38,19 @@ public class LoginActivity extends AppCompatActivity {
     private EditText usuario;
     private EditText contrasena;
 
+    private DatabaseReference mDatabase;
+    private FirebaseAuth auth;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        //setContentView(R.layout.activity_login);
 
 
-        usuario = (EditText) findViewById(R.id.usernameTxt);
-        contrasena = (EditText) findViewById(R.id.passTxt);
+        //usuario = (EditText) findViewById(R.id.usernameTxt);
+        //contrasena = (EditText) findViewById(R.id.passTxt);
 
         /*
         dbHelper = new DbHelper(this);
@@ -46,91 +63,87 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(i);
             finish();
         }*/
-    }
 
-
-    public void onRegisterClick(View v){
-        /*Intent intent = new Intent(this, RegisterActivity.class);
-        startActivityForResult(intent,REGISTER_REQUEST);*/
-        Intent i = new Intent(this, RegisterActivity.class);
-
-        startActivity(i);
-        finish();
-    }
-
-    public void onLoginClick(View v){
-        Intent i = new Intent(this, MainActivity.class);
-        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(i);
-        finish();
-
-        /*boolean error = false;
-        String usrStr = usuario.getText().toString().trim();
-        String passStr = contrasena.getText().toString().trim();
-        SQLiteDatabase db;
-
-        if("".equals(usrStr)){
-            error = true;
-            usuario.setError("Este campo no puede estar vacío");
+        auth = FirebaseAuth.getInstance();
+        if(!LoginActivity.persistedEnabled){
+            FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+            persistedEnabled = true;
         }
 
-        if("".equals(passStr)){
-            error = true;
-            contrasena.setError("Este campo no puede estar vacío");
-        }
-        if(error){
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+
+        checkCharacter();
+
+
+    }
+
+    public void checkCharacter(){
+
+        if(auth.getCurrentUser() == null){
+            startActivityForResult(
+                    AuthUI.getInstance()
+                            .createSignInIntentBuilder()
+                            .setProviders(
+                                    AuthUI.EMAIL_PROVIDER,
+                                    AuthUI.GOOGLE_PROVIDER
+                            )
+                            .build(),
+                    LOGIN_REQ);
             return;
         }
 
-        if(checkLogin(usrStr, passStr)){
-            SharedPreferences placesPrefs = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
-            SharedPreferences.Editor prefsEditor = placesPrefs.edit();
-            prefsEditor.putString(LOGGED_USER, usrStr);
-            prefsEditor.commit();
+        ValueEventListener userListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Intent i;
+                // Get Post object and use the values to update the UI
 
-            Intent i = new Intent(this, LugaresMainActivity.class);
-            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(i);
-            finish();
-        }else{
-            Snackbar snack = Snackbar.make(v, "Usuario o contraseña incorrecto.", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null);
+                User user = dataSnapshot.child("users").child(auth.getCurrentUser().getUid()).getValue(User.class);
+                if(user == null){
+                    user= new User(auth.getCurrentUser().getDisplayName(), auth.getCurrentUser().getEmail(), -1, 0);
+                    mDatabase.child("users").child(auth.getCurrentUser().getUid()).setValue(user);
+                }
 
-            snack.getView().setBackgroundColor(getResources().getColor(R.color.colorAccent));
-            snack.show();
-        }*/
-    }
+                if(user.getCharId() != -1){
+                    i = new Intent(LoginActivity.this, MainActivity.class);
 
-    private boolean checkLogin(String user, String password) {
-        /*String[] values = new String[]{user};
-        String passHash;
-        SQLiteDatabase sqldb = dbHelper.getReadableDatabase();
-        String Query = "select * from " + Users.TABLE + " where "
-                + Users.Column.NOMBRE_USUARIO + " = ?";
-        Cursor cursor = sqldb.rawQuery(Query, values);
-        if(cursor == null || cursor.getCount() <= 0){
-            cursor.close();
-            return false;
-        }
-
-        try {
-            if (cursor.moveToFirst()) {
-                passHash = cursor.getString(cursor.getColumnIndex(Users.Column.CONTRASENA));
-                cursor.close();
-                return SHA256HashProvider.getProvider().verifyPassword(password, passHash);
+                }else{
+                    i = new Intent(LoginActivity.this, CharacterSelectActivity.class);
+                }
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
+                finish();
             }
-        }catch(Exception e){}
 
-        cursor.close();*/
-        return false;
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(LoginActivity.this, "Error while reading data", Toast.LENGTH_SHORT).show();
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+            }
+        };
+        mDatabase.addListenerForSingleValueEvent(userListener);
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // Check which request we're responding to
-        if (requestCode == REGISTER_REQUEST) {
+        if (requestCode == LOGIN_REQ) {
             // Make sure the request was successful
             if (resultCode == RESULT_OK) {
+
+                checkCharacter();
+            }else{
+                startActivityForResult(
+                        AuthUI.getInstance()
+                                .createSignInIntentBuilder()
+                                .setProviders(
+                                        AuthUI.EMAIL_PROVIDER,
+                                        AuthUI.GOOGLE_PROVIDER
+                                        )
+                                .build(),
+                        LOGIN_REQ);
             }
         }
     }

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "896714891817",
+    "firebase_url": "https://conocetuudea.firebaseio.com",
+    "project_id": "conocetuudea",
+    "storage_bucket": "conocetuudea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:896714891817:android:2db1322d6b5f688f",
+        "android_client_info": {
+          "package_name": "co.edu.udea.compumovil.gr1.conocetuudea"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "896714891817-i39t2oa657u9goj2cdtovgqiujvsq1l7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "co.edu.udea.compumovil.gr1.conocetuudea",
+            "certificate_hash": "AE96A5B198D1854B6C378C3EE821CE75D0CA5851"
+          }
+        },
+        {
+          "client_id": "896714891817-m47v3me1jkq8anu5u2cge2e60rk0hrss.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmb75rop2v7KlBUnfL4DacJMmn_PDFdDA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "896714891817-m47v3me1jkq8anu5u2cge2e60rk0hrss.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
