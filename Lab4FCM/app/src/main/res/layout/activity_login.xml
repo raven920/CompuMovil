@@ -7,10 +7,48 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="co.edu.udea.compumovil.gr01.lab4fcm.LoginActivity">
+    tools:context="co.edu.udea.compumovil.gr01.lab4fcm.LoginActivity"
+    android:id="@+id/userdata">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="Bienvenido a mi aplicacion"/>
+
+    <TextView
+        android:text="nombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/datauser"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/logout"
+        android:layout_alignBottom="@+id/textView7" />
+
+    <Button
+        android:text="Logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="132dp"
+        android:id="@+id/logout"
+        android:layout_below="@+id/btn_ir_chat"
+        android:layout_alignRight="@+id/btn_ir_chat"
+        android:layout_alignEnd="@+id/btn_ir_chat" />
+
+    <Button
+        android:text="Ir a Chat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="108dp"
+        android:id="@+id/btn_ir_chat"
+        android:layout_below="@+id/textView10"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="   Esta aplicación fue creeada para el curso: \n
+        Computacion Movil de la U de A"
+        android:layout_marginTop="43dp"
+        android:layout_below="@+id/textView9"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
